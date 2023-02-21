@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristoranti</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='Ristoranti.css')}}">
+
+</head>
+<body class = "fullscreen">
+<div class = "container">
+    <!---Menu orizzontale---->
+    <div class ="center">
+        <nav class="menu1">
+            <ul>
+                <p><img src="{{url_for('static', filename='images/logo.png')}}"  align = left width="63" height="63"></p>
+                <li><a href="{{url_for('fudy')}}"> Home </a> </li>
+                <li><a href="{{url_for('ristoranti')}}">Ristoranti</a></li>
+                <li><a href="{{url_for('profilo')}}">Profilo</a> </li>
+                <li><a> About us</a></li>
+            </ul>
+        </nav>
+    </div>
+    <form method="post">
+        <input type="text" name="nome" placeholder="Nome ristorante">
+        <input type="text" name="citta" placeholder="Città">
+        <select name="categoria">
+            <option value="">Seleziona una categoria</option>
+
+{% for Categoria in categorie %}
+    <option value="{{Categoria.Tipologia}}">{{Categoria.Tipologia}}</option>
+    {% endfor %}
+
+
+  </select>
+
+        <input type="submit" value="Cerca">
+    </form>
+
+
+    <table>
+      <tr>
+          <th>Nome</th>
+           <th>Città</th>
+          <th>Dettagli</th>
+      </tr>
+      {% for ristorante in ristoranti %}
+      <tr>
+        <td>{{ristorante.Nome}}</td>
+        <td>{{ristorante.Citta}}</td>
+          <td>
+
+          <form action="{{url_for('ristorante_detailed', IdRistorante=ristorante.IdRistorante)}}" method="get">
+              <input type="submit" value="Prenota">
+        </form>
+      </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+   {% if ristoranti %}
+  <!-- Visualizza i dettagli del ristorante qui -->
+  <!-- ... -->
+{% else %}
+  <tr>
+    <td colspan="2" class="no-results" >Nessun ristorante trovato</td>
+  </tr>
+{% endif %}
+
+
+
+
+
+</div>
+
+</body>
+
+</html>

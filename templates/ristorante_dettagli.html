@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>{{ristorante.Nome}}</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='ristorante_dettagli.css')}}">
+
+  </head>
+  <body class = "fullscreen">
+<div class = "container">
+    <!---Menu orizzontale---->
+    <div class ="center">
+        <nav class="menu1">
+            <ul>
+                <p><img src="{{url_for('static', filename='images/logo.png')}}"  align = left width="63" height="63"></p>
+                <li><a href="{{url_for('fudy')}}"> Home </a> </li>
+                <li><a href="{{url_for('ristoranti')}}">Ristoranti</a></li>
+                <li><a href="{{url_for('profilo')}}">Profilo</a> </li>
+                <li><a> About us</a></li>
+            </ul>
+        </nav>
+    </div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+       {% endif %}
+       {% endwith %}
+
+
+
+<!-- prima card -->
+<div class="restaurant-card">
+  <table>
+    <tr>
+      <td><h2>{{ristorante.Nome}}</h2></td>
+    </tr>
+    <tr>
+      <td><b>Città:</b></td>
+      <td>{{ristorante.Citta}}</td>
+    </tr>
+    <tr>
+      <td><b>Indirizzo:</b></td>
+      <td>{{ristorante.Via}} {{ristorante.NumeroCivico}}</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- seconda card -->
+  <div class="reservation-card">
+    <h2>Prenota un tavolo</h2>
+    <form action="{{ url_for('ristorante_detailed', IdRistorante=ristorante.IdRistorante) }}" method="post">
+      <label for="Data_prenotazione">Data di prenotazione:</label>
+      <input type="date" id="Data_prenotazione" name="Data_prenotazione">
+      <br><br>
+      <label for="Orario">Orario:</label>
+      <input type="time" id="Orario" name="Orario">
+      <br><br>
+      <label for="NumPosti">Numero di posti:</label>
+      <input type="text" id="NumPosti" name="NumPosti">
+      <br><br>
+      <input type="submit" value="Cerca Tavolo">
+    </form>
+  </div>
+
+<h2>Recensioni</h2>
+<ul class="review-list">
+  {% for recensione in recensioni %}
+    <li>
+      <div class="review-header">
+        <span class="review-username">{{recensione.Autore_recensione}}</span>
+        <span class="review-rating">{{ recensione.Voto }}</span>
+      </div>
+      <p class="review-title">{{ recensione.Titolo }}</p>
+      <p class="review-description">{{ recensione.Descrizione }}</p>
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>Lascia una recensione</h2>
+<form action="{{ url_for('ristorante_detailed', IdRistorante=ristorante.IdRistorante) }}" method="post">
+  <label for="titolo">Titolo:</label>
+  <input type="text" id="titolo" name="titolo"><br><br>
+  <label for="voto">Voto:</label>
+  <input type="number" id="voto" name="voto" min="1" max="10"><br><br>
+  <label for="descrizione">Descrizione:</label>
+  <textarea id="descrizione" name="descrizione"></textarea><br><br>
+  <input type="submit" value="Invia">
+</form>
+
+</div>
+  </body>
+</html>

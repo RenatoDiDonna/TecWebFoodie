@@ -1,0 +1,102 @@
+html, .fullscreen{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin:0;
+    text-align: center;
+    width: 100%;
+    height: auto;
+
+}
+.center {
+    background-color: orange;
+    text-align: center;
+    height: auto;
+    padding: 0;
+    position: relative;
+    margin: 0;
+}
+
+
+.menu1
+{
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    width: 100%;
+}
+
+
+.menu1 li
+{
+    display: inline-block;
+    padding: 20px;
+}
+
+
+
+
+.menu1 a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+
+
+
+.table-container {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: orange;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked + label {
+  background-color: orange;
+}
+
+input[type="submit"] {
+  margin: 30px 0;
+  padding: 12px 30px;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 20px;
+}

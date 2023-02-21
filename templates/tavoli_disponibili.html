@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tavoli disponibili</title>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='tavoli_disponibili.css')}}">
+  </head>
+  <body class = "fullscreen">
+<div class = "container">
+<!---Menu orizzontale---->
+<div class ="center">
+<nav class="menu1">
+   <ul>
+        <p><img src="{{url_for('static', filename='images/logo.png')}}"  align = left width="63" height="63"></p>
+        <li><a href="{{url_for('fudy')}}"> Home </a> </li>
+        <li><a href="{{url_for('ristoranti')}}"> Ristoranti </a></li>
+        <li><a href="{{url_for('profilo')}}">Profilo</a> </li>
+        <li><a> About us</a></li>
+    </ul>
+
+</nav>
+
+</div>
+
+
+
+    <h1>Tavoli disponibili:</h1>
+    <form action="{{ url_for('prenota_confirm', IdRistorante=IdRistorante,data=data,ora=ora) }}" method="post">
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Numero tavolo</th>
+        <th>Numero di posti</th>
+        <th>Seleziona</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tavolo in tavoli %}
+        <tr>
+          <td>{{ tavolo.NumTavolo }}</td>
+          <td>{{ tavolo.NumPosti }}</td>
+          <td>
+            <input type="radio" id="{{ tavolo.NumTavolo }}" name="NumTavolo" value="{{ tavolo.NumTavolo }}">
+            <label for="{{ tavolo.NumTavolo }}"></label>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <input type="submit" value="Prenota">
+</div>
+
+    </form>
+
+</div>
+
+  </body>
+
+</html>

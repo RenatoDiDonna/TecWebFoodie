@@ -1,0 +1,22 @@
+{
+    "name": "Foodie WPA",
+    "short_name": "Foodie",
+    "icons": [
+        {
+            "src": "/static/images/logo.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "/static/images/logo.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable any"
+        }
+    ],
+    "lang": "en-US",
+    "start_url": "./fudy",
+    "display": "standalone",
+    "background_color": "orange",
+    "theme_color": "orange"}
+
